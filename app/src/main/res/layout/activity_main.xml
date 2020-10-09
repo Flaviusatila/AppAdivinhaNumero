@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <EditText
+        android:id="@+id/peso"
+        style="@style/dimensao"
+        android:inputType="numberDecimal"
+        android:hint="Informe o peso em Kg"/>
+
+    <EditText
+        android:id="@+id/altura"
+        style="@style/dimensao"
+        android:inputType="numberDecimal"
+        android:hint="Informe a altura em metros"/>
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Calcular"
+        android:layout_gravity="center_horizontal"
+        android:background="#03A9F4"
+        android:textColor="#3F6F09"
+        android:onClick="calcular"/>
+
+    <TextView
+        style="@style/dimensao"
+        android:gravity="center_horizontal"
+        android:text="IMC Calculado"
+        android:textColor="#3F6F09"
+        android:layout_marginTop="20dp"
+        android:textSize="26dp"/>
+
+    <TextView
+        android:id="@+id/valorImc"
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:background="#039be5"
+        android:textColor="#fff"
+        android:hint="0.00"
+        android:textSize="26sp"
+        android:gravity="center_horizontal"/>
+
+
+</LinearLayout>
