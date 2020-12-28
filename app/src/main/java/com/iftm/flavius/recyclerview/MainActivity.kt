@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 class MainActivity : AppCompatActivity() {
 
     val listaDeContatos = ArrayList<Contato>()
-    val recycler = findViewById<RecyclerView>(R.id.recyclerview)
+    var recycler : RecyclerView? = null
     var adapter: ContatoAdapter? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -19,8 +19,9 @@ class MainActivity : AppCompatActivity() {
         for(i in 1..30){
             listaDeContatos.add(Contato("Flavius Atila Gama Cavalho Ferrira", "flaviusatila@gmail.com"))
         }
+        recycler = findViewById(R.id.recyclerview)
         adapter = ContatoAdapter(listaDeContatos,this)
-        recycler.layoutManager = LinearLayoutManager(this)
-        recycler.adapter = adapter
+        recycler?.layoutManager = LinearLayoutManager(this)
+        recycler?.adapter = adapter
     }
 }
