@@ -9,15 +9,58 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity2"
-                  android:label="Tela2"
-                  android:parentActivityName=".MainActivity">
-            <meta-data
-                  android:name="android.support.PARENT_ACTIVITY"
-                  android:value=".MainActivity"/>
-        </activity>
+
         <activity
-            android:name=".MainActivity"
+            android:name=".activities.AlteracaoActivity"
+            android:label="Alteração"
+            android:parentActivityName=".activities.MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".activities.ExcluirActivity"
+            android:label="Excluir"
+            android:parentActivityName=".activities.MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".activities.LoguinActivity"
+            android:label="Loguin"
+            android:parentActivityName=".activities.MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".activities.ListagemActivity"
+            android:label="Listagem"
+            android:parentActivityName=".activities.MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".activities.CadastroActivity"
+            android:label="Cadastro"
+            android:parentActivityName=".activities.MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".activities.MainActivity" />
+        </activity>
+
+        <activity
+            android:name=".activities.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>

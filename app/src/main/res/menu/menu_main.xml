@@ -1,16 +1,31 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    tools:context="com.iftm.flavius.crudintegrador.MainActivity">
+    tools:context="com.iftm.flavius.crudintegrador.activities.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_alteracao"
+        android:icon="@drawable/ic_action_alteracao"
         android:orderInCategory="100"
-        android:title="@string/action_settings"
+        android:title="Alteração de usuário"
         app:showAsAction="never" />
     <item
-        android:id="@+id/action_teste"
-        android:icon="@drawable/ic_teste"
-        android:title="Teste"
-        app:actionViewClass="android.widget.SearchView"
+        android:id="@+id/action_cadastro"
+        android:icon="@drawable/ic_action_cadastro"
+        android:title="Cadastro"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_excluir"
+        android:icon="@drawable/ic_action_excluir"
+        android:title="Excluir"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_lista"
+        android:icon="@drawable/ic_action_lista_usuarios"
+        android:title="Lista"
+        app:showAsAction="never" />
+    <item
+        android:id="@+id/action_loguin"
+        android:icon="@drawable/ic_action_loguin"
+        android:title="Loguin"
         app:showAsAction="always" />
 </menu>

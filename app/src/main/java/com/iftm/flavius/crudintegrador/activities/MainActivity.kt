@@ -1,4 +1,4 @@
-package com.iftm.flavius.crudintegrador
+package com.iftm.flavius.crudintegrador.activities
 
 import android.content.Intent
 import android.os.Bundle
@@ -7,7 +7,7 @@ import com.google.android.material.snackbar.Snackbar
 import androidx.appcompat.app.AppCompatActivity
 import android.view.Menu
 import android.view.MenuItem
-import android.widget.Toast
+import com.iftm.flavius.crudintegrador.R
 
 class MainActivity : AppCompatActivity() {
 
@@ -29,16 +29,16 @@ class MainActivity : AppCompatActivity() {
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        return when (item.itemId) {
-            R.id.action_settings ->{
-                Toast.makeText(this,"Ola Mundo",Toast.LENGTH_SHORT).show()
-                true
-            }
-            R.id.action_teste -> {
-                startActivity(Intent(this,MainActivity2::class.java))
-                true
-            }
-            else -> super.onOptionsItemSelected(item)
+
+        when(item.itemId){
+          R.id.action_alteracao ->startActivity(Intent(this,AlteracaoActivity::class.java))
+          R.id.action_cadastro ->startActivity(Intent(this,CadastroActivity::class.java))
+          R.id.action_excluir ->startActivity(Intent(this,ExcluirActivity::class.java))
+          R.id.action_lista ->startActivity(Intent(this,ListagemActivity::class.java))
+          R.id.action_loguin ->startActivity(Intent(this,LoguinActivity::class.java))
         }
+    return super.onOptionsItemSelected(item)
     }
+
+
 }
