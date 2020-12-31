@@ -9,5 +9,4 @@ open class Entrevista(
     val candidato: Candidato,
     val entrevistador: Entrevistador,
     val listComentarios: AbstractList<Comentarios>?
-) {
-}
+)

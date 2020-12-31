@@ -2,12 +2,10 @@ package entities
 
 import java.util.*
 
-open class Candidato(
-    val id: Int, val nome: String,
-    val dataNascimento: Date, val email: String,
-    val listArquivos: () -> List<Arquivos>
+class Candidato(
+    val id: Int, var nome: String,
+    var dataNascimento: String, var email: String,
+    val listArquivos: List<Arquivos>
 ) {
-    override fun toString(): String {
-        return "$id"
-    }
+    constructor() : this(-1,"","","", emptyList())
 }

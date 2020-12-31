@@ -1,13 +1,10 @@
 import builders.AdicionarArquivos
 import entities.Arquivos
 import enum.Cargo
+import services.Fluxo
 
 fun main() {
 
-    var cargo = Cargo.ESTAGIARIO.getSalarioBecario()
-
-    var teste = AdicionarArquivos()
-
-    println(teste.candidato.toString())
+    Fluxo.createCandidato()
 
 }
