@@ -1,5 +1,6 @@
 package com.iftm.flavius.evacinas
 
+import android.content.Intent
 import android.os.Bundle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.snackbar.Snackbar
@@ -30,9 +31,15 @@ class MainActivity : AppCompatActivity() {
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
-        return when (item.itemId) {
-            R.id.action_settings -> true
-            else -> super.onOptionsItemSelected(item)
+        when(item.itemId){
+            R.id.at_action_agendarretorno ->startActivity(Intent(this,AgendarRetornoActivity::class.java))
+            R.id.at_action_atualizarpaciente ->startActivity(Intent(this,AtualizaPacienteActivity::class.java))
+            R.id.at_action_consultarhistoricoaciente ->startActivity(Intent(this,ConsultarHistoricoPacienteActivity::class.java))
+            R.id.at_action_consultarparcientescadastrados ->startActivity(Intent(this,ConsultarPacientesCadastradosActivity::class.java))
+            R.id.at_action_listartodasasconsultas ->startActivity(Intent(this,ListaTodasAsConsultasActivity::class.java))
+            R.id.at_action_procedimentosrealizados ->startActivity(Intent(this,RegistrarProcedimentoRealizadosActivity::class.java))
+            R.id.at_action_savepaciente ->startActivity(Intent(this,SavePacienteActivity::class.java))
         }
+        return super.onOptionsItemSelected(item)
     }
 }
