@@ -11,28 +11,28 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="52dp"
+        android:autofillHints=""
         android:ems="10"
+        android:hint="@string/cpf"
         android:inputType="textPersonName"
-        android:text="@string/cpf"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:autofillHints="" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/et_agenda_retorno_usuario"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
+        android:autofillHints=""
         android:ems="10"
+        android:hint="@string/usuario"
         android:inputType="textPersonName"
-        android:text="@string/usuario"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_agenda_retorno_cpf"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/et_agenda_retorno_cpf" />
 
     <EditText
         android:id="@+id/et_agenda_retorno_consulta_horario"
@@ -50,13 +50,13 @@
         android:id="@+id/et_agenda_retorno_consulta_local"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:autofillHints=""
         android:ems="10"
+        android:hint="@string/local"
         android:inputType="textPersonName"
-        android:text="@string/local"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/et_agenda_retorno_consulta_horario"
-        android:autofillHints="" />
+        app:layout_constraintTop_toBottomOf="@+id/et_agenda_retorno_consulta_horario" />
 
     <Button
         android:id="@+id/bt_cadastrar_agenda_retorno"
@@ -64,7 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:onClick="agendarretorno"
-        android:text="Button"
+        android:text="@string/button"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/et_agenda_retorno_consulta_local" />

@@ -1,5 +1,7 @@
 package com.iftm.flavius.evacinas.dtos
 
+import java.time.LocalDateTime
+
 
 class ConsultaDTO {
 

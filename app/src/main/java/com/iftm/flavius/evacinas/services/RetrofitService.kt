@@ -15,7 +15,7 @@ class RetrofitService {
         val httpClient = OkHttpClient.Builder()
         httpClient.addInterceptor(logging)
         val gson = GsonBuilder()
-            .setDateFormat("yyyy-MM-dd'T'HH:mm:ssZ")
+            .setDateFormat("dd-MM-yyyy@HH:mm")
             .create()
         return Retrofit.Builder()
             .baseUrl(baseUrl)
