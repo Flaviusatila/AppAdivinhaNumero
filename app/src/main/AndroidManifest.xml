@@ -2,76 +2,80 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.iftm.flavius.evacinas">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.EVacinas">
+        android:theme="@style/Theme.EVacinas"
+        android:usesCleartextTraffic="true">
         <activity
-            android:name=".SavePacienteActivity"
+            android:name=".activitys.SavePacienteActivity"
             android:label="Salvar Paciente"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".activitys.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".activitys.MainActivity" />
         </activity>
         <activity
-            android:name=".AtualizaPacienteActivity"
+            android:name=".activitys.AtualizaPacienteActivity"
             android:label="Atualizar Paciente"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".activitys.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".activitys.MainActivity" />
         </activity>
         <activity
-            android:name=".ConsultarPacientesCadastradosActivity"
+            android:name=".activitys.ConsultarPacientesCadastradosActivity"
             android:label="Consultar Paciente Cadastrado"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".activitys.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".activitys.MainActivity" />
         </activity>
         <activity
-            android:name=".AgendarRetornoActivity"
+            android:name=".activitys.AgendarRetornoActivity"
             android:label="Agendar Retorno"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".activitys.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".activitys.MainActivity" />
         </activity>
         <activity
-            android:name=".ListaTodasAsConsultasActivity"
+            android:name=".activitys.ListaTodasAsConsultasActivity"
             android:label="Listar Todas As Consultas"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".activitys.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".activitys.MainActivity" />
         </activity>
         <activity
-            android:name=".ConsultarHistoricoPacienteActivity"
+            android:name=".activitys.ConsultarHistoricoPacienteActivity"
             android:label="Consultar Historico Paciente"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".activitys.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".activitys.MainActivity" />
         </activity>
         <activity
-            android:name=".RegistrarProcedimentoRealizadosActivity"
+            android:name=".activitys.RegistrarProcedimentoRealizadosActivity"
             android:label="Registrar Procedimentos Realizados"
-            android:parentActivityName=".MainActivity">
+            android:parentActivityName=".activitys.MainActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
-                android:value=".MainActivity" />
+                android:value=".activitys.MainActivity" />
         </activity>
         <activity
-            android:name=".MainActivity"
+            android:name=".activitys.MainActivity"
             android:label="@string/app_name"
             android:theme="@style/Theme.EVacinas.NoActionBar">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
     </application>
