@@ -7,7 +7,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitService {
-    val baseUrl = "http://192.168.0.74:8080/"
+    val baseUrl = "http://10.0.2.2:80/"
     val api: InterfaceDeServicos? = criaRetrofit()?.create(InterfaceDeServicos::class.java)
     fun criaRetrofit(): Retrofit? {
         val logging = HttpLoggingInterceptor()

@@ -1,0 +1,334 @@
+Index: app/src/main/java/com/iftm/flavius/evacinas/dtos/CadastrarDadosCartaoVacinaDTO.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.iftm.flavius.evacinas.dtos\r\n\r\n\r\nimport java.util.*\r\n\r\n\r\nclass CadastrarDadosCartaoVacinaDTO {\r\n\r\n    var cpf: String? = null\r\n\r\n    var usuario: String? = null\r\n\r\n    var nome: String? = null\r\n\r\n    var procedimentos: String? = null\r\n\r\n    var observacoesVacina: String? = null\r\n\r\n    var dose: String? = null\r\n\r\n    var dataAplicacao: Date? = null\r\n\r\n    var lote: Int? = null\r\n\r\n    var dataVenc: Date? = null\r\n\r\n    var consulta: ConsultaDTO? = null\r\n\r\n}
+===================================================================
+--- app/src/main/java/com/iftm/flavius/evacinas/dtos/CadastrarDadosCartaoVacinaDTO.kt	(revision f842b826ecae34a421bf6ed516923ec655dc02a8)
++++ app/src/main/java/com/iftm/flavius/evacinas/dtos/CadastrarDadosCartaoVacinaDTO.kt	(date 1609946129742)
+@@ -26,4 +26,27 @@
+ 
+     var consulta: ConsultaDTO? = null
+ 
++    constructor(
++        cpf: String?,
++        usuario: String?,
++        nome: String?,
++        procedimentos: String?,
++        observacoesVacina: String?,
++        dose: String?,
++        dataAplicacao: Date?,
++        lote: Int?,
++        dataVenc: Date?,
++        consulta: ConsultaDTO?
++    ) {
++        this.cpf = cpf
++        this.usuario = usuario
++        this.nome = nome
++        this.procedimentos = procedimentos
++        this.observacoesVacina = observacoesVacina
++        this.dose = dose
++        this.dataAplicacao = dataAplicacao
++        this.lote = lote
++        this.dataVenc = dataVenc
++        this.consulta = consulta
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/java/com/iftm/flavius/evacinas/activitys/RegistrarProcedimentoRealizadosActivity.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.iftm.flavius.evacinas.activitys\r\n\r\nimport androidx.appcompat.app.AppCompatActivity\r\nimport android.os.Bundle\r\nimport com.iftm.flavius.evacinas.R\r\n\r\nclass RegistrarProcedimentoRealizadosActivity : AppCompatActivity() {\r\n    override fun onCreate(savedInstanceState: Bundle?) {\r\n        super.onCreate(savedInstanceState)\r\n        setContentView(R.layout.activity_registrar_procedimento_realizados)\r\n    }\r\n}
+===================================================================
+--- app/src/main/java/com/iftm/flavius/evacinas/activitys/RegistrarProcedimentoRealizadosActivity.kt	(revision f842b826ecae34a421bf6ed516923ec655dc02a8)
++++ app/src/main/java/com/iftm/flavius/evacinas/activitys/RegistrarProcedimentoRealizadosActivity.kt	(date 1609946129715)
+@@ -2,11 +2,59 @@
+ 
+ import androidx.appcompat.app.AppCompatActivity
+ import android.os.Bundle
++import android.util.Log
++import android.view.View
++import android.widget.EditText
++import android.widget.Toast
+ import com.iftm.flavius.evacinas.R
++import com.iftm.flavius.evacinas.dtos.AgendarRetornoDTO
++import com.iftm.flavius.evacinas.dtos.CadastrarDadosCartaoVacinaDTO
++import com.iftm.flavius.evacinas.dtos.ConsultaDTO
++import com.iftm.flavius.evacinas.services.RetrofitService
++import retrofit2.Call
++import retrofit2.Callback
++import retrofit2.Response
+ 
+ class RegistrarProcedimentoRealizadosActivity : AppCompatActivity() {
+     override fun onCreate(savedInstanceState: Bundle?) {
+         super.onCreate(savedInstanceState)
+         setContentView(R.layout.activity_registrar_procedimento_realizados)
+     }
++
++    fun registrarprocedimento(view: View) {
++
++        var cpf = (findViewById<EditText>(R.id.et_registra_procedimento_cpf)).text.toString()
++        var usuario = (findViewById<EditText>(R.id.et_registra_procedimento_usuario)).text.toString()
++        var nome = (findViewById<EditText>(R.id.et_registra_procedimento_nome)).text.toString()
++        var procedimento = (findViewById<EditText>(R.id.et_registra_procedimento_procedimentos)).text.toString()
++        var observacoesVacina = (findViewById<EditText>(R.id.et_registra_procedimento_observacoes)).text.toString()
++        var dose = (findViewById<EditText>(R.id.et_registra_procedimento_dose)).text.toString()
++        var dataAplicacao = (findViewById<EditText>(R.id.et_registra_procedimento_data_aplicacao)).text.toString()
++        var lote = (findViewById<EditText>(R.id.et_registra_procedimento_lote)).text.toString()
++        var dataVenc = (findViewById<EditText>(R.id.et_registra_procedimento_data_aplicacao)).text.toString()
++
++        var local = (findViewById<EditText>(R.id.et_registra_procedimento_consulta_local)).text.toString()
++
++        var consulta:ConsultaDTO = ConsultaDTO(dataAplicacao,local,1)
++        var procediementosRealziados:CadastrarDadosCartaoVacinaDTO =
++            CadastrarDadosCartaoVacinaDTO(cpf,usuario,nome,procedimento,observacoesVacina,dose,dataAplicacao,lote,dataVenc,consulta)
++
++        RetrofitService().api?.registrarprocedimento(procediementosRealziados)?.enqueue(object : Callback<CadastrarDadosCartaoVacinaDTO?>{
++          override fun onResponse(
++                call: Call<CadastrarDadosCartaoVacinaDTO?>,
++                response: Response<CadastrarDadosCartaoVacinaDTO?>
++            ) {
++              if (response.code() == 200){
++                  Toast.makeText(this@RegistrarProcedimentoRealizadosActivity,"Usuario Cadastrado com Sucesso",
++                      Toast.LENGTH_LONG).show()
++              }else{
++                  Toast.makeText(this@RegistrarProcedimentoRealizadosActivity,"Erro ao Cadastrar Usuario", Toast.LENGTH_LONG).show()
++              }
++            }
++
++            override fun onFailure(call: Call<CadastrarDadosCartaoVacinaDTO?>, t: Throwable) {
++                Log.e("Erro", "************** erro **********\n"+t?.message.toString())
++            }
++        })
++    }
+ }
+\ No newline at end of file
+Index: app/src/main/res/layout/activity_agendar_retorno.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".activitys.AgendarRetornoActivity\">\r\n\r\n    <EditText\r\n        android:id=\"@+id/et_agenda_retorno_cpf\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"52dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPersonName\"\r\n        android:text=\"@string/cpf\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"0.497\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toTopOf=\"parent\"\r\n        android:autofillHints=\"\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/et_agenda_retorno_usuario\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"8dp\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPersonName\"\r\n        android:text=\"@string/usuario\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintHorizontal_bias=\"1.0\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/et_agenda_retorno_cpf\"\r\n        android:autofillHints=\"\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/et_agenda_retorno_consulta_horario\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:ems=\"10\"\r\n        android:hint=\"@string/data\"\r\n        android:inputType=\"textPersonName\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/et_agenda_retorno_usuario\"\r\n        android:autofillHints=\"\" />\r\n\r\n    <EditText\r\n        android:id=\"@+id/et_agenda_retorno_consulta_local\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:ems=\"10\"\r\n        android:inputType=\"textPersonName\"\r\n        android:text=\"@string/local\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/et_agenda_retorno_consulta_horario\"\r\n        android:autofillHints=\"\" />\r\n\r\n    <Button\r\n        android:id=\"@+id/bt_cadastrar_agenda_retorno\"\r\n        android:layout_width=\"0dp\"\r\n        android:layout_height=\"wrap_content\"\r\n        android:layout_marginTop=\"24dp\"\r\n        android:onClick=\"agendarretorno\"\r\n        android:text=\"Button\"\r\n        app:layout_constraintEnd_toEndOf=\"parent\"\r\n        app:layout_constraintStart_toStartOf=\"parent\"\r\n        app:layout_constraintTop_toBottomOf=\"@+id/et_agenda_retorno_consulta_local\" />\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+===================================================================
+--- app/src/main/res/layout/activity_agendar_retorno.xml	(revision f842b826ecae34a421bf6ed516923ec655dc02a8)
++++ app/src/main/res/layout/activity_agendar_retorno.xml	(date 1609945490178)
+@@ -11,28 +11,28 @@
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="52dp"
++        android:autofillHints=""
+         android:ems="10"
++        android:hint="@string/cpf"
+         android:inputType="textPersonName"
+-        android:text="@string/cpf"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="0.497"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toTopOf="parent"
+-        android:autofillHints="" />
++        app:layout_constraintTop_toTopOf="parent" />
+ 
+     <EditText
+         android:id="@+id/et_agenda_retorno_usuario"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
+         android:layout_marginTop="8dp"
++        android:autofillHints=""
+         android:ems="10"
++        android:hint="@string/usuario"
+         android:inputType="textPersonName"
+-        android:text="@string/usuario"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintHorizontal_bias="1.0"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/et_agenda_retorno_cpf"
+-        android:autofillHints="" />
++        app:layout_constraintTop_toBottomOf="@+id/et_agenda_retorno_cpf" />
+ 
+     <EditText
+         android:id="@+id/et_agenda_retorno_consulta_horario"
+@@ -50,13 +50,13 @@
+         android:id="@+id/et_agenda_retorno_consulta_local"
+         android:layout_width="0dp"
+         android:layout_height="wrap_content"
++        android:autofillHints=""
+         android:ems="10"
++        android:hint="@string/local"
+         android:inputType="textPersonName"
+-        android:text="@string/local"
+         app:layout_constraintEnd_toEndOf="parent"
+         app:layout_constraintStart_toStartOf="parent"
+-        app:layout_constraintTop_toBottomOf="@+id/et_agenda_retorno_consulta_horario"
+-        android:autofillHints="" />
++        app:layout_constraintTop_toBottomOf="@+id/et_agenda_retorno_consulta_horario" />
+ 
+     <Button
+         android:id="@+id/bt_cadastrar_agenda_retorno"
+Index: app/src/main/res/layout/activity_registrar_procedimento_realizados.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"utf-8\"?>\r\n<androidx.constraintlayout.widget.ConstraintLayout xmlns:android=\"http://schemas.android.com/apk/res/android\"\r\n    xmlns:app=\"http://schemas.android.com/apk/res-auto\"\r\n    xmlns:tools=\"http://schemas.android.com/tools\"\r\n    android:layout_width=\"match_parent\"\r\n    android:layout_height=\"match_parent\"\r\n    tools:context=\".activitys.RegistrarProcedimentoRealizadosActivity\">\r\n\r\n</androidx.constraintlayout.widget.ConstraintLayout>
+===================================================================
+--- app/src/main/res/layout/activity_registrar_procedimento_realizados.xml	(revision f842b826ecae34a421bf6ed516923ec655dc02a8)
++++ app/src/main/res/layout/activity_registrar_procedimento_realizados.xml	(date 1609945490232)
+@@ -6,4 +6,138 @@
+     android:layout_height="match_parent"
+     tools:context=".activitys.RegistrarProcedimentoRealizadosActivity">
+ 
++    <EditText
++        android:id="@+id/et_registra_procedimento_cpf"
++        android:layout_width="0dp"
++        android:layout_height="45dp"
++        android:layout_marginTop="50dp"
++        android:ems="10"
++        android:hint="@string/cpf"
++        android:inputType="textPersonName"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.407"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toTopOf="parent"
++        android:autofillHints="" />
++
++    <EditText
++        android:id="@+id/et_registra_procedimento_usuario"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:hint="@string/profissional_de_saude_usuario"
++        android:inputType="textPersonName"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/et_registra_procedimento_cpf"
++        android:autofillHints="" />
++
++    <EditText
++        android:id="@+id/et_registra_procedimento_nome"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:hint="@string/nome_paciente"
++        android:inputType="textPersonName"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/et_registra_procedimento_usuario"
++        android:autofillHints="" />
++
++    <EditText
++        android:id="@+id/et_registra_procedimento_data_aplicacao"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:hint="@string/data_aplica_o"
++        android:inputType="date"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/et_registra_procedimento_dose"
++        android:autofillHints="" />
++
++    <EditText
++        android:id="@+id/et_registra_procedimento_data_venc"
++        android:layout_width="200dp"
++        android:layout_height="50dp"
++        android:ems="10"
++        android:hint="@string/data_vencimento"
++        android:inputType="date"
++        app:layout_constraintBaseline_toBaselineOf="@+id/et_registra_procedimento_lote"
++        app:layout_constraintStart_toStartOf="parent"
++        android:autofillHints="" />
++
++    <EditText
++        android:id="@+id/et_registra_procedimento_procedimentos"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:hint="@string/procedimentos_feitos_na_consulta"
++        android:inputType="textPersonName"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/et_registra_procedimento_nome"
++        android:autofillHints="" />
++
++    <EditText
++        android:id="@+id/et_registra_procedimento_observacoes"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:hint="@string/observa_es_da_vacina"
++        android:inputType="textPersonName"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/et_registra_procedimento_procedimentos"
++        android:autofillHints="" />
++
++    <EditText
++        android:id="@+id/et_registra_procedimento_dose"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:ems="10"
++        android:hint="@string/dose_aplicada"
++        android:inputType="textPersonName"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintHorizontal_bias="0.0"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/et_registra_procedimento_observacoes"
++        android:autofillHints="" />
++
++    <EditText
++        android:id="@+id/et_registra_procedimento_lote"
++        android:layout_width="200dp"
++        android:layout_height="50dp"
++        android:ems="10"
++        android:hint="@string/lote_vacina"
++        android:inputType="number"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/et_registra_procedimento_data_aplicacao"
++        android:autofillHints="" />
++
++    <EditText
++        android:id="@+id/et_registra_procedimento_consulta_local"
++        android:layout_width="0dp"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="55dp"
++        android:ems="10"
++        android:hint="@string/local"
++        android:inputType="textPersonName"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/et_registra_procedimento_data_aplicacao"
++        android:autofillHints="" />
++
++    <Button
++        android:id="@+id/button_registrar_procedimento"
++        android:layout_width="wrap_content"
++        android:layout_height="wrap_content"
++        android:layout_marginTop="20dp"
++        android:onClick="registrarprocedimento"
++        android:text="@string/cadastrar_vacina_aplicada"
++        app:layout_constraintEnd_toEndOf="parent"
++        app:layout_constraintStart_toStartOf="parent"
++        app:layout_constraintTop_toBottomOf="@+id/et_registra_procedimento_consulta_local" />
++
+ </androidx.constraintlayout.widget.ConstraintLayout>
+\ No newline at end of file
+Index: app/src/main/java/com/iftm/flavius/evacinas/services/InterfaceDeServicos.kt
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package com.iftm.flavius.evacinas.services\r\n\r\nimport com.iftm.flavius.evacinas.dtos.AgendarRetornoDTO\r\nimport retrofit2.Call\r\nimport retrofit2.http.Body\r\nimport retrofit2.http.POST\r\n\r\npublic interface InterfaceDeServicos {\r\n\r\n    @POST(\"/consulta/agendar_retorno\")\r\n    fun agendarRetorno(@Body user: AgendarRetornoDTO?): Call<AgendarRetornoDTO?>?\r\n}
+===================================================================
+--- app/src/main/java/com/iftm/flavius/evacinas/services/InterfaceDeServicos.kt	(revision f842b826ecae34a421bf6ed516923ec655dc02a8)
++++ app/src/main/java/com/iftm/flavius/evacinas/services/InterfaceDeServicos.kt	(date 1609946129730)
+@@ -1,6 +1,7 @@
+ package com.iftm.flavius.evacinas.services
+ 
+ import com.iftm.flavius.evacinas.dtos.AgendarRetornoDTO
++import com.iftm.flavius.evacinas.dtos.CadastrarDadosCartaoVacinaDTO
+ import retrofit2.Call
+ import retrofit2.http.Body
+ import retrofit2.http.POST
+@@ -9,4 +10,7 @@
+ 
+     @POST("/consulta/agendar_retorno")
+     fun agendarRetorno(@Body user: AgendarRetornoDTO?): Call<AgendarRetornoDTO?>?
++
++    @POST("/usuarios/cadastrar")
++    fun registrarprocedimento(@Body user: CadastrarDadosCartaoVacinaDTO?): Call<CadastrarDadosCartaoVacinaDTO?>?
+ }
+\ No newline at end of file

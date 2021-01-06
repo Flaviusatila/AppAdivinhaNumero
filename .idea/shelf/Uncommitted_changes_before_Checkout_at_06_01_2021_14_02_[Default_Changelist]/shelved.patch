@@ -1,0 +1,25 @@
+Index: app/src/main/res/values/strings.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><resources>\r\n    <string name=\"app_name\">eVacinas</string>\r\n    <string name=\"action_settings\">Settings</string>\r\n    <!-- Strings used for fragments for navigation -->\r\n    <string name=\"first_fragment_label\">First Fragment</string>\r\n    <string name=\"second_fragment_label\">Second Fragment</string>\r\n    <string name=\"next\">Next</string>\r\n    <string name=\"previous\">Previous</string>\r\n\r\n    <string name=\"hello_first_fragment\">Hello first fragment</string>\r\n    <string name=\"hello_second_fragment\">Hello second fragment. Arg: %1$s</string>\r\n    <string name=\"consultar_historico_paciente\">Consultar Historico Paciente</string>\r\n    <string name=\"listar_todas_consultas\">Listar Todas Consultas</string>\r\n    <string name=\"consultar_pacientes_cadastrados\">Consultar Pacientes Cadastrados</string>\r\n    <string name=\"agendar_retorno\">Agendar Retorno</string>\r\n    <string name=\"atualizar_paciente\">Atualizar Paciente</string>\r\n    <string name=\"procedimentos_realizados\">Procedimentos Realizados</string>\r\n    <string name=\"salva_paciente\">Salva Paciente</string>\r\n    <string name=\"cpf\">CPF</string>\r\n    <string name=\"local\">Local</string>\r\n    <string name=\"data\">Data</string>\r\n    <string name=\"usuario\">Usuario</string>\r\n</resources>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+--- app/src/main/res/values/strings.xml	(revision f842b826ecae34a421bf6ed516923ec655dc02a8)
++++ app/src/main/res/values/strings.xml	(date 1609945490189)
+@@ -20,4 +20,14 @@
+     <string name="local">Local</string>
+     <string name="data">Data</string>
+     <string name="usuario">Usuario</string>
++    <string name="nome_paciente">Nome Paciente</string>
++    <string name="profissional_de_saude_usuario">Profissional de Saude (Usuario)</string>
++    <string name="procedimentos_feitos_na_consulta">Procedimentos Feitos na Consulta</string>
++    <string name="observa_es_da_vacina">Observações da Vacina</string>
++    <string name="dose_aplicada">Dose Aplicada</string>
++    <string name="data_aplica_o">Data Aplicação</string>
++    <string name="lote_vacina">Lote Vacina</string>
++    <string name="data_vencimento">Data Vencimento</string>
++    <string name="local">Local</string>
++    <string name="cadastrar_vacina_aplicada">Cadastrar Vacina Aplicada</string>
+ </resources>
+\ No newline at end of file
