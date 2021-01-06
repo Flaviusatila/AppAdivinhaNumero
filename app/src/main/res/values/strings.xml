@@ -16,4 +16,8 @@
     <string name="atualizar_paciente">Atualizar Paciente</string>
     <string name="procedimentos_realizados">Procedimentos Realizados</string>
     <string name="salva_paciente">Salva Paciente</string>
+    <string name="cpf">CPF</string>
+    <string name="local">Local</string>
+    <string name="data">Data</string>
+    <string name="usuario">Usuario</string>
 </resources>
